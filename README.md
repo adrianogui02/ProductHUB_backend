@@ -67,7 +67,7 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu sistema:
      docker-compose up -d --build
      ```
 
-     Isso irá iniciar o serviço da API na porta 3005 e o PostgreSQL na porta 5432.
+    
 
    - Execute as migrações do banco de dados:
 
