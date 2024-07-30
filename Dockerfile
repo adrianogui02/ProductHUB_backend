@@ -11,14 +11,18 @@ COPY . /var/www
 RUN sed -i 's|/var/www/html|/var/www/public|g' /etc/apache2/sites-available/000-default.conf
 RUN sed -i 's|/var/www/html|/var/www/public|g' /etc/apache2/apache2.conf
 
-# Instale extensões PHP necessárias
-RUN docker-php-ext-install pdo pdo_mysql
+# Instale extensões PHP necessárias e dependências adicionais
+RUN apt-get update && apt-get install -y \
+    git \
+    zip \
+    unzip \
+    && docker-php-ext-install pdo pdo_mysql
 
 # Instale o Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Instale dependências do Laravel
-RUN composer install
+# Permitir a execução do Composer como superusuário e instale as dependências do Laravel
+RUN COMPOSER_ALLOW_SUPERUSER=1 composer install
 
 # Defina permissões para a pasta storage e bootstrap/cache
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
@@ -28,3 +32,6 @@ RUN a2enmod rewrite
 
 # Exponha a porta 80
 EXPOSE 80
+
+# Comando de inicialização
+CMD ["apache2-foreground"]
