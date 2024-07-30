@@ -1,97 +1,99 @@
-## Laravel CRUD API with Auth
-Basic Laravel CRUD API application included with Authentication Module & Product Module. It's included with JWT authentication and Swagger API format.
+# ProductHUB API
 
-----
+Bem-vindo à **ProductHUB API**. Este projeto é uma API desenvolvida para gerenciar informações de produtos e categorias. Ela oferece endpoints para operações CRUD (Criar, Ler, Atualizar e Deletar) e autenticação de usuários. A API está configurada para rodar em um ambiente Dockerizado.
 
-### Language & Framework Used:
-1. PHP >= 8.2
-1. Laravel 11.x
+## Stack utilizada
 
-### Older Versions (if Needed):
-1. Laravel 8.x - https://github.com/ManiruzzamanAkash/Laravel-Advanced-CRUD-API/releases/tag/vLaravel8.x
-1. Laravel 9.x - https://github.com/ManiruzzamanAkash/Laravel-Advanced-CRUD-API/releases/tag/vLaravel9.2
+**Back-end:** PHP, Laravel, MySQL
 
-### Architecture Used:
-1. Laravel 11.x
-1. Interface-Repository Pattern
-1. Model Based Eloquent Query
-1. Swagger API Documentation - https://github.com/DarkaOnLine/L5-Swagger
-1. JWT Auth - https://github.com/tymondesigns/jwt-auth
-1. PHP Unit Testing - Some basic unit testing added.
+## Funcionalidades
 
-### API List:
-##### Authentication Module
-1. [x] Register User API with Token
-1. [x] Login API with Token
-1. [x] Authenticated User Profile
-1. [x] Refresh Data
-1. [x] Logout
+- CRUD completo para gerenciamento de produtos e categorias.
+- Autenticação e autorização de usuários com JWT.
+- Endpoints seguros e protegidos por autenticação.
+- Documentação da API utilizando Swagger.
+- Configuração fácil via Docker e Docker Compose.
 
-##### Product Module
-1. [x] Product List
-1. [x] Product List [Public]
-1. [x] Create Product
-1. [x] Edit Product
-1. [x] View Product
-1. [x] Delete Product
+## Instalação
 
-### How to Run:
-1. Clone Project - 
+Para configurar e rodar a **ProductHUB API**, siga os passos abaixo:
 
-```bash
-git clone https://github.com/ManiruzzamanAkash/Laravel-Basic-CRUD-API.git
-```
-1. Go to the project drectory by `cd Laravel-Basic-CRUD-API` & Run the
-2. Create `.env` file & Copy `.env.example` file to `.env` file
-3. Create a database called - `laravel_basic_crud`.
-4. Install composer packages - `composer install`.
-5. Now migrate and seed database to complete whole project setup by running this-
-``` bash
-php artisan migrate:refresh --seed
-```
-It will create `21` Users and `103` Dummy Products.
+### Pré-requisitos
 
-6. Run the server -
-``` bash
-php artisan serve
-```
-8. Open Browser -
-http://127.0.0.1:8000 & go to API Documentation -
-http://127.0.0.1:8000/api/documentation
-9. You'll see a Swagger Panel.
+Certifique-se de ter as seguintes ferramentas instaladas em seu sistema:
+
+- [PHP](https://www.php.net/) (versão 7.4 ou superior)
+- [Composer](https://getcomposer.org/)
+- [Docker](https://www.docker.com/get-started) e [Docker Compose](https://docs.docker.com/compose/install/)
+- [MySQL](https://www.mysql.com/)
+
+### Passo a Passo
+
+1. **Clone o repositório**
+
+   Clone o repositório da API para seu ambiente local:
+
+   ```bash
+   git clone https://github.com/adrianogui02/ProductHUB_backend.git
+
+1. **Navegue até o diretório do projeto**
+
+   Entre no diretório do projeto clonado:
+
+   ```bash
+   cd ProductHUB_backend
+   ```
+
+1. **Configuração do Ambiente**
+
+   Crie um arquivo .env na raiz do projeto com o seguinte conteúdo:
+
+   ```bash
+    DB_CONNECTION=mysql
+    DB_HOST=db
+    DB_PORT=3306
+    DB_DATABASE=laravel
+    DB_USERNAME=laravel
+    DB_PASSWORD=secret
+   ```
+
+1. **Usando Docker**
+
+   Se preferir usar Docker, você pode seguir os passos abaixo para configurar e rodar a API usando Docker e Docker Compose:
+
+   - Construa e Inicie os containers:
+
+     ```bash
+     docker-compose up -d --build
+     ```
+
+     Isso irá iniciar o serviço da API na porta 3005 e o PostgreSQL na porta 5432.
+
+   - Execute as migrações do banco de dados:
+
+     ```bash
+     docker-compose exec backend php artisan migrate
+     ```
+
+     Verifique se não há erros na inicialização e que a API está conectada ao banco de dados.
+
+     - Verifique os logs dos containers::
+
+     ```bash
+     docker-compose logs -f
+     ```
+
+    - Verifique se não há erros na inicialização e que a API está conectada ao banco de dados.
+
+1. **Documentação Swagger**
+
+   Para acessar a documentação Swagger, abra um navegador e vá até o endereço abaixo. Lá você encontrará uma interface interativa que permite explorar e testar os endpoints da API de maneira fácil e intuitiva.
+   
+   http://localhost:8000/api/documentation
+
+## Autores
+
+[@adrianogui02](https://github.com/adrianogui02)
 
 
-### Procedure
-1. First Login with the given credential or any other user credential
-1. Set bearer token to Swagger Header or Post Header as Authentication
-1. Hit Any API, You can also hit any API, before authorization header data set to see the effects.
 
-
-### Demo
-
-###### API List Views:
-<img src="https://i.ibb.co/gV1Yn9Z/1-Swagger-API-Demo.png" alt="1-Swagger-API-Demo" border="0">
-
-###### Login in Swagger with Given Data:
-<img src="https://i.ibb.co/5vrXkgN/2-API-Login1.png" alt="2-API-Login1" border="0">
-
-
-###### Get token After Successful Login:
-<img src="https://i.ibb.co/cQ37n9t/3-API-Login2-Response.png" alt="3-API-Login2-Response" border="0">
-
-###### Set token in Swagger Header:
-<img src="https://i.ibb.co/m8xQZ4T/Screenshot-2022-07-12-at-8-37-47-AM.png" alt="4-API-Swagger-Set-Bearer-Token" border="0">
-
-###### Or, Set token in Postman Header as Authorization:
-<img src="https://i.ibb.co/7p8Y3Yz/Postman-Product-List-API-with-Authenticated-Token.png" alt="Postman-Product-List-API-with-Authenticated-Token" border="0">
-
-###### Hit Any API Route in Swagger:
-<img src="https://i.ibb.co/VSWbXq9/5-API-Swaagger-Public-Product-List-View.png" alt="5-API-Swaagger-Public-Product-List-View" border="0">
-
-###### Image Upload throw Postman:
-<img src="https://i.ibb.co/VBkMBBp/Postman-Store-Product-with-File-Upload.png" alt="Postman-Store-Product-with-File-Upload" border="0">
-
-### Test
-1. Test with Postman - https://www.getpostman.com/collections/5642915d135f376b84af [Click to open with post man]
-1. Test with Swagger.
-1. Swagger Limitation: Image can not be uploaded throw Swagger, it can be uploaded throw Postman.
