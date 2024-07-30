@@ -72,7 +72,7 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu sistema:
    - Execute as migrações do banco de dados:
 
      ```bash
-     docker-compose exec backend php artisan migrate
+     docker-compose exec app php artisan migrate
      ```
 
      Verifique se não há erros na inicialização e que a API está conectada ao banco de dados.
