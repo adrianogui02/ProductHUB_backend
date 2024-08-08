@@ -74,6 +74,11 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu sistema:
      ```bash
      docker-compose exec app php artisan migrate
      ```
+   - Execute o comando para gerar a chave secreta:
+
+     ```bash
+     docker-compose exec app php artisan jwt:secret
+     ```
 
      Verifique se não há erros na inicialização e que a API está conectada ao banco de dados.
 
